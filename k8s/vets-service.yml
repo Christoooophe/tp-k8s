@@ -5,7 +5,7 @@ metadata:
     app: vets-service
   name: vets-service
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - name: "vets-service"
       port: 8083
