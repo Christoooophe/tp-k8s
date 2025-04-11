@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-bdd
+spec:
+  selector:
+    matchLabels:
+      app: petclinic-bdd
+  template:
+    metadata:
+      labels:
+        app: petclinic-bdd
+    spec:
+      containers:
+      - name: petclinic-bdd
+        image: mysql:8.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3306
+        env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_ROOT_USERNAME
+              value: root
+            - name: MYSQL_DATABASE
+              value: root
+        volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: db-data
+      volumes:
+        - name: db-data
+          emptyDir: {}
+        

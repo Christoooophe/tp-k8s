@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vets
+  name: vets
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vets
+  template:
+    metadata:
+      labels:
+        app: vets
+    spec:
+      containers:
+        - image: lestof/docker-spring-petclinic-vets-service
+          name: vets
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8083
+              name: vets

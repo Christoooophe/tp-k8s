@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api-gateway
+  name: api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - image: lestof/docker-spring-petclinic-api-gateway
+          name: gateway
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: api-gateway

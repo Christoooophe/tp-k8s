@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: visits
+  name: visits
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: visits
+  template:
+    metadata:
+      labels:
+        app: visits
+    spec:
+      containers:
+        - image: lestof/docker-spring-petclinic-visits-service
+          name: visits
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8084
+              name: visits
